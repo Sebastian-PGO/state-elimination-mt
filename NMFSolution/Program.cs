@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NMF.Models.Repository;
-using TTC2017.StateElimination.Transitiongraph;
+﻿using NMF.Models.Repository;
+using System;
 using System.Diagnostics;
+using System.Linq;
+using TTC2017.StateElimination.Transitiongraph;
 
 namespace TTC2017.StateElimination
 {
@@ -15,17 +12,27 @@ namespace TTC2017.StateElimination
         {
             var stopwatch = new Stopwatch();
             stopwatch.Start();
-            CalculateRegex(args[0]);
+            Console.WriteLine(CalculateRegex(args[0]));
             stopwatch.Stop();
-            Console.WriteLine($"Operation took {stopwatch.Elapsed.TotalSeconds}s");
+            Console.WriteLine(stopwatch.ElapsedMilliseconds);
         }
 
-        private static void CalculateRegex(string path)
+        private static string CalculateRegex(string path)
         {
             var repository = new ModelRepository();
             var transitionGraph = repository.Resolve(path).RootElements[0] as TransitionGraph;
 
             var initial = transitionGraph.States.FirstOrDefault(s => s.IsInitial);
+            if (initial.Incoming.Count > 0)
+            {
+                var newInitial = new State { IsInitial = true };
+                transitionGraph.Transitions.Add(new Transition
+                {
+                    Source = newInitial,
+                    Target = initial
+                });
+                initial = newInitial;
+            }
             var final = CreateFinal(transitionGraph);
 
             foreach (var s in transitionGraph.States.ToArray())
@@ -53,6 +60,8 @@ namespace TTC2017.StateElimination
 
                 s.Delete();
             }
+
+            return string.Join("+", from edge in initial.Outgoing where edge.Target == final select edge.Label);
         }
 
         private static IState CreateFinal(TransitionGraph transitionGraph)
