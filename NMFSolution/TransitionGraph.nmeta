@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<nmeta:Namespace xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Uri="http://transitiongraph/1.0" Prefix="transitiongraph" Name="transitiongraph" xmlns:xmi="http://www.omg.org/XMI" xmlns:nmeta="http://nmf.codeplex.com/nmeta/">
+  <Types xsi:type="nmeta:Class" Name="TransitionGraph">
+    <References IsContainment="True" ReferenceType="#//State" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="states" />
+    <References IsContainment="True" ReferenceType="#//Transition" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="transitions" />
+  </Types>
+  <Types xsi:type="nmeta:Class" Name="State">
+    <References Opposite="#//Transition/source" ReferenceType="#//Transition" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="outgoing" />
+    <References Opposite="#//Transition/target" ReferenceType="#//Transition" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="incoming" />
+    <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" LowerBound="1" Name="id" />
+    <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" LowerBound="1" Name="isFinal" />
+    <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" LowerBound="1" Name="isInitial" />
+  </Types>
+  <Types xsi:type="nmeta:Class" Name="Transition">
+    <References Opposite="#//State/outgoing" ReferenceType="#//State" IsOrdered="True" IsUnique="True" LowerBound="1" Name="source" />
+    <References Opposite="#//State/incoming" ReferenceType="#//State" IsOrdered="True" IsUnique="True" LowerBound="1" Name="target" />
+    <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" LowerBound="1" Name="label" />
+    <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" LowerBound="1" Name="probability" />
+  </Types>
+</nmeta:Namespace>
