@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ASCII"?>
+<transitiongraph:TransitionGraph xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:transitiongraph="http://transitiongraph/1.0">
+  <states outgoing="//@transitions.0 //@transitions.1" incoming="//@transitions.0 //@transitions.3" isInitial="true"/>
+  <states id="1" outgoing="//@transitions.2 //@transitions.3" incoming="//@transitions.1 //@transitions.2" isFinal="true"/>
+  <transitions label="b" source="//@states.0" target="//@states.0" probability="1.0"/>
+  <transitions label="a" source="//@states.0" target="//@states.1" probability="1.0"/>
+  <transitions label="a" source="//@states.1" target="//@states.1" probability="1.0"/>
+  <transitions label="b" source="//@states.1" target="//@states.0" probability="1.0"/>
+</transitiongraph:TransitionGraph>

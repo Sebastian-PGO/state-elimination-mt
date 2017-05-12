@@ -1,4 +1,5 @@
 ﻿using NMF.Models.Repository;
+using NMF.Utilities;
 using System;
 using System.Diagnostics;
 using System.Linq;
@@ -12,8 +13,9 @@ namespace TTC2017.StateElimination
         {
             var stopwatch = new Stopwatch();
             stopwatch.Start();
-            Console.WriteLine(CalculateRegex(args[0]));
+            var regex = CalculateRegex(args[0]);
             stopwatch.Stop();
+            Console.WriteLine(regex);
             Console.WriteLine(stopwatch.ElapsedMilliseconds);
         }
 
@@ -47,14 +49,24 @@ namespace TTC2017.StateElimination
 
                 foreach (var incoming in s.Incoming.Where(t => t.Source != s))
                 {
+                    if (incoming.Source == null) continue;
                     foreach (var outgoing in s.Outgoing.Where(t => t.Target != s))
                     {
-                        transitionGraph.Transitions.Add(new Transition
+                        if (outgoing.Target == null) continue;
+                        var transition = incoming.Source.Outgoing.FirstOrDefault(t => t.Target == outgoing.Target);
+                        if (transition == null)
                         {
-                            Source = incoming.Source,
-                            Target = outgoing.Target,
-                            Label = incoming.Label + selfEdge + outgoing.Label
-                        });
+                            transitionGraph.Transitions.Add(new Transition
+                            {
+                                Source = incoming.Source,
+                                Target = outgoing.Target,
+                                Label = incoming.Label + selfEdge + outgoing.Label
+                            });
+                        }
+                        else
+                        {
+                            transition.Label = $"({transition.Label}+{incoming.Label + selfEdge + outgoing.Label})";
+                        }
                     }
                 }
 
@@ -67,7 +79,7 @@ namespace TTC2017.StateElimination
         private static IState CreateFinal(TransitionGraph transitionGraph)
         {
             var finalStates = transitionGraph.States.Where(s => s.IsFinal).ToList();
-            if (finalStates.Count == 1)
+            if (finalStates.Count == 1 && finalStates[0].Outgoing.Count == 0)
             {
                 return finalStates[0];
             }
