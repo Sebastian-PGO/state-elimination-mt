@@ -88,9 +88,9 @@ public abstract class TestFramework {
 		tg = getTransitionGraphFromXMI(modelName);
 		
 		timeToTransform = System.currentTimeMillis();
-		if(transformationType.equals("fsa2regex")) regex = FSAToRegex(tg);
-		else if(transformationType.equals("dtmc2sre")) regex = DTMCToSRE(tg);
-		timeToTransform = System.currentTimeMillis() - timeToTransform;
+		if(transformationType.equals("fsa2regex")) regex = FSAToRegex(tg, "../ExperimentalData/testdata/emf/task-main/" + modelName + ".xmi");
+		else if(transformationType.equals("dtmc2sre")) regex = DTMCToSRE(tg, "../ExperimentalData/testdata/emf/task-main/" + modelName + ".xmi");
+		timeToTransform = getTime(System.currentTimeMillis(), timeToTransform);
 		
 		regexSize = getRegexSize(regex);
 		
@@ -111,12 +111,16 @@ public abstract class TestFramework {
 	/*
 	 * implement this method
 	 */
-	public abstract String FSAToRegex(TransitionGraph fsa);
+	public abstract String FSAToRegex(TransitionGraph fsa, String path);
+	
+	public long getTime(long start, long end) {
+		return end - start;
+	}
 	
 	/*
 	 * implement this method
 	 */
-	public abstract String DTMCToSRE(TransitionGraph dtmc);
+	public abstract String DTMCToSRE(TransitionGraph dtmc, String path);
 	
 	public TransitionGraph getTransitionGraphFromXMI(String modelName){
 		
