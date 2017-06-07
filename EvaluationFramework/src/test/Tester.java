@@ -43,10 +43,13 @@ public class Tester extends TestFramework{
 			BufferedReader reader = new BufferedReader(new InputStreamReader(stdout));
 			String regex = reader.readLine();
 			String time = reader.readLine();
+			process.destroy();
 			lastTime = Long.parseLong(time);
 			return regex;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		}
 		
