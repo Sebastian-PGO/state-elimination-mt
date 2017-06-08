@@ -27,11 +27,11 @@ import transitiongraph.TransitiongraphPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link transitiongraph.impl.TransitionGraphImpl#getStates <em>States</em>}</li>
  *   <li>{@link transitiongraph.impl.TransitionGraphImpl#getTransitions <em>Transitions</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

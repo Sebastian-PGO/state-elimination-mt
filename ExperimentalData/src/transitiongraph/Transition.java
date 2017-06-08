@@ -11,13 +11,13 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link transitiongraph.Transition#getLabel <em>Label</em>}</li>
  *   <li>{@link transitiongraph.Transition#getSource <em>Source</em>}</li>
  *   <li>{@link transitiongraph.Transition#getTarget <em>Target</em>}</li>
  *   <li>{@link transitiongraph.Transition#getProbability <em>Probability</em>}</li>
  * </ul>
- * </p>
  *
  * @see transitiongraph.TransitiongraphPackage#getTransition()
  * @model

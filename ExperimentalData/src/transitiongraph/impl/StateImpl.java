@@ -28,6 +28,7 @@ import transitiongraph.TransitiongraphPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link transitiongraph.impl.StateImpl#getId <em>Id</em>}</li>
  *   <li>{@link transitiongraph.impl.StateImpl#getOutgoing <em>Outgoing</em>}</li>
@@ -35,7 +36,6 @@ import transitiongraph.TransitiongraphPackage;
  *   <li>{@link transitiongraph.impl.StateImpl#isIsFinal <em>Is Final</em>}</li>
  *   <li>{@link transitiongraph.impl.StateImpl#isIsInitial <em>Is Initial</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
