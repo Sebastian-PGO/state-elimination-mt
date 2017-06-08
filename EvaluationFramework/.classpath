@@ -3,7 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ExperimentalData"/>
-	<classpathentry kind="lib" path="C:/eclipse/plugins/org.eclipse.emf.common_2.12.0.v20160420-0247.jar" sourcepath="C:/eclipse/plugins/org.eclipse.emf.common.source_2.12.0.v20160420-0247.jar">
+	<classpathentry kind="lib" path="D:/eclipse/plugins/org.eclipse.emf.common_2.12.0.v20160420-0247.jar" sourcepath="D:/eclipse/plugins/org.eclipse.emf.common.source_2.12.0.v20160420-0247.jar">
 		<accessrules>
 			<accessrule kind="accessible" pattern="org/eclipse/emf/common/*"/>
 			<accessrule kind="accessible" pattern="org/eclipse/emf/common/archive/*"/>
@@ -14,7 +14,7 @@
 			<accessrule ignoreifbetter="true" kind="nonaccessible" pattern="**/*"/>
 		</accessrules>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/eclipse/plugins/org.eclipse.emf.ecore_2.12.0.v20160420-0247.jar" sourcepath="C:/eclipse/plugins/org.eclipse.emf.ecore.source_2.12.0.v20160420-0247.jar">
+	<classpathentry kind="lib" path="D:/eclipse/plugins/org.eclipse.emf.ecore_2.12.0.v20160420-0247.jar" sourcepath="D:/eclipse/plugins/org.eclipse.emf.ecore.source_2.12.0.v20160420-0247.jar">
 		<accessrules>
 			<accessrule kind="accessible" pattern="org/eclipse/emf/ecore/*"/>
 			<accessrule kind="accessible" pattern="org/eclipse/emf/ecore/impl/*"/>
@@ -32,7 +32,7 @@
 			<accessrule ignoreifbetter="true" kind="nonaccessible" pattern="**/*"/>
 		</accessrules>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/eclipse/plugins/org.eclipse.emf.ecore.xmi_2.12.0.v20160420-0247.jar" sourcepath="C:/eclipse/plugins/org.eclipse.emf.ecore.xmi.source_2.12.0.v20160420-0247.jar">
+	<classpathentry kind="lib" path="D:/eclipse/plugins/org.eclipse.emf.ecore.xmi_2.12.0.v20160420-0247.jar" sourcepath="D:/eclipse/plugins/org.eclipse.emf.ecore.xmi.source_2.12.0.v20160420-0247.jar">
 		<accessrules>
 			<accessrule kind="accessible" pattern="org/eclipse/emf/ecore/xmi/*"/>
 			<accessrule kind="accessible" pattern="org/eclipse/emf/ecore/xmi/impl/*"/>
@@ -40,6 +40,5 @@
 			<accessrule ignoreifbetter="true" kind="nonaccessible" pattern="**/*"/>
 		</accessrules>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/eclipse/plugins/org.eclipse.emf_2.6.0.v20160526-0356.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

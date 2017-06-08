@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.Random;
 
 import org.eclipse.emf.common.util.EList;
@@ -31,19 +33,20 @@ public class Tester extends TestFramework{
 	}
 	
 	public String FSAToRegex(TransitionGraph fsa, String path){
-		
+		File tmpRegex = new File("regex.txt");
 		try {
 			File pathToExecutable = new File(NMF_EXE);
 			ProcessBuilder processBuilder = new ProcessBuilder(pathToExecutable.getCanonicalPath());
 			processBuilder.command().add(path);
+			processBuilder.command().add(tmpRegex.getCanonicalPath());
 			processBuilder.redirectErrorStream(true);
 			Process process;
 			process = processBuilder.start();
 			InputStream stdout = process.getInputStream();
 			BufferedReader reader = new BufferedReader(new InputStreamReader(stdout));
-			String regex = reader.readLine();
+			process.waitFor();
+			String regex = new String(Files.readAllBytes(tmpRegex.toPath()), StandardCharsets.UTF_8);
 			String time = reader.readLine();
-			process.destroy();
 			lastTime = Long.parseLong(time);
 			return regex;
 		} catch (IOException e) {
@@ -51,6 +54,11 @@ public class Tester extends TestFramework{
 			e.printStackTrace();
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			
 		}
 		
 		return "";

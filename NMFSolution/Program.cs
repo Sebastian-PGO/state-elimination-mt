@@ -2,6 +2,7 @@
 using NMF.Utilities;
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using TTC2017.StateElimination.Transitiongraph;
 
@@ -15,7 +16,7 @@ namespace TTC2017.StateElimination
             stopwatch.Start();
             var regex = CalculateRegex(args[0]);
             stopwatch.Stop();
-            Console.WriteLine(regex);
+            File.WriteAllText(args[1], regex);
             Console.WriteLine(stopwatch.ElapsedMilliseconds);
         }
 
@@ -37,7 +38,7 @@ namespace TTC2017.StateElimination
             }
             var final = CreateFinal(transitionGraph);
 
-            foreach (var s in transitionGraph.States.ToArray())
+            foreach (var s in transitionGraph.States.OrderBy(s => s.Incoming.Count * s.Outgoing.Count).ToArray())
             {
                 if (s == initial || s == final) continue;
 
@@ -45,7 +46,7 @@ namespace TTC2017.StateElimination
                                                 where edge.Target == s
                                                 select edge.Label);
 
-                if (!string.IsNullOrEmpty(selfEdge)) selfEdge = $"({selfEdge})*";
+                if (!string.IsNullOrEmpty(selfEdge)) selfEdge = string.Concat("(", selfEdge, ")*");
 
                 foreach (var incoming in s.Incoming.Where(t => t.Source != s))
                 {
@@ -65,7 +66,7 @@ namespace TTC2017.StateElimination
                         }
                         else
                         {
-                            transition.Label = $"({transition.Label}+{incoming.Label + selfEdge + outgoing.Label})";
+                            transition.Label = string.Concat("(", transition.Label, "+", incoming.Label, selfEdge, outgoing.Label, ")");
                         }
                     }
                 }
